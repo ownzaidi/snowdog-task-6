@@ -1,0 +1,13 @@
+{
+    "name": "ownzaidi/snowdog-task-6",
+    "description": "snowdog-task-6",
+    "type": "task-library",
+    "autoload": {
+        "psr-4": {
+            "Ownzaidi\\Task6\\": "src"
+        },
+        "files": [
+            "src/components.php"
+        ]
+    }
+}
