@@ -59,7 +59,8 @@ class ImportSiteMap
                 if (!isset($_FILES["uploadedFile"]["tmp_name"])) {
                     $_SESSION['flash'] = 'Please select file to import!';
                 }
-                $xmlfile = file_get_contents($_FILES["sitemapFile"]["tmp_name"]);
+
+                $xmlfile = file_get_contents($_FILES["uploadedFile"]["tmp_name"]);
                 $data = simplexml_load_string($xmlfile);
                 $websites = json_decode(json_encode($data), true);
                 $websites = end($websites);
