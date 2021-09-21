@@ -97,6 +97,8 @@ class ImportSiteMapCmd
                                 $added = $this->websiteManager->create($user, $website["name"], $website["website"]);
                                 if (!$added) {
                                     $output->writeln('<error>Unable to add website. Try again.</error>');
+                                    $output->writeln('<comment>Exiting...</comment>');
+                                    return;
                                 }
                             }
                         }
@@ -109,16 +111,14 @@ class ImportSiteMapCmd
                                     $pageAdded = $this->pageManager->create($web, $website["page"]);
                                     if (!$pageAdded) {
                                         $output->writeln('<error>Unable to add website. Try again.</error>');
+                                        $output->writeln('<comment>Exiting...</comment>');
+                                        return;
                                     }
                                 }
                             }
                         }
+                        $output->writeln('<info>Website and pages are imported successfully!</info>');
 
-                        if ($response == true) {
-                            $output->writeln('<info>Website and pages are imported successfully!</info>');
-                        } else {
-                            $output->writeln('<error>Something went wrong: ' . $response . '</error>');
-                        }
                     } else {
                         $output->writeln('<info>Exiting...</info>');
                     }
