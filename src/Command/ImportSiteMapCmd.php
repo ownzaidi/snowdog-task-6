@@ -93,8 +93,8 @@ class ImportSiteMapCmd
                         $websites = end($data);
 
                         foreach ($websites as $website) {
-                            if (isset($website["website"]) && isset($website["name"])) {
-                                $added = $this->websiteManager->create($user, $website["name"], $website["website"]);
+                            if (isset($website["websiteUrl"]) && isset($website["websiteName"])) {
+                                $added = $this->websiteManager->create($user, $website["websiteName"], $website["websiteUrl"]);
                                 if ($added == 0) {
                                     $output->writeln('<error>Unable to add website. Website already Exist.</error>');
                                     $output->writeln('<comment>Exiting...</comment>');
@@ -104,11 +104,11 @@ class ImportSiteMapCmd
                         }
 
                         foreach ($websites as $website) {
-                            if (isset($website["page"]) && isset($website["refwebsite"])) {
-                                $web = $this->importManager->getWebsiteByUrl($website["refwebsite"]);
-                                $pages = $this->importManager->getPagesByUrl($website["page"], $web);
+                            if (isset($website["websitePage"]) && isset($website["website"])) {
+                                $web = $this->importManager->getWebsiteByUrl($website["website"]);
+                                $pages = $this->importManager->getPagesByUrl($website["websitePage"], $web);
                                 if (count($pages) < 1) {
-                                    $pageAdded = $this->pageManager->create($web, $website["page"]);
+                                    $pageAdded = $this->pageManager->create($web, $website["websitePage"]);
                                     if ($pageAdded == 0) {
                                         $output->writeln('<error>Unable to add pages to website. Try Again</error>');
                                         $output->writeln('<comment>Exiting...</comment>');
