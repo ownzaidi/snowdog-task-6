@@ -2,7 +2,7 @@
 
 namespace Ownzaidi\Task6\Model;
 
-use Ownzaidi\Task6\Core\Database;
+use Snowdog\DevTest\Core\Database;
 
 class ImportManager
 {
