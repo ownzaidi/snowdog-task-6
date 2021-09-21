@@ -100,6 +100,9 @@ class ImportSiteMapCmd
                                     $output->writeln('<comment>Exiting...</comment>');
                                     return;
                                 }
+                            } else {
+                                $output->writeln('<error>Wrong XML file format. Check vendor/ownzaidi/snowdog-task-6/web/test.xml for reference</error>');
+                                return;
                             }
                         }
 
@@ -115,6 +118,9 @@ class ImportSiteMapCmd
                                         return;
                                     }
                                 }
+                            } else {
+                                $output->writeln('<error>Wrong XML file format. Check vendor/ownzaidi/snowdog-task-6/web/test.xml for reference</error>');
+                                return;
                             }
                         }
                         $output->writeln('<info>Website and pages are imported successfully!</info>');
