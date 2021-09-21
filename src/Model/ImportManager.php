@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowdog\DevTest\Model;
+namespace Ownzaidi\Task6\Model;
 
 use Ownzaidi\Task6\Core\Database;
 
