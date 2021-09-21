@@ -95,8 +95,8 @@ class ImportSiteMapCmd
                         foreach ($websites as $website) {
                             if (isset($website["website"]) && isset($website["name"])) {
                                 $added = $this->websiteManager->create($user, $website["name"], $website["website"]);
-                                if (!$added) {
-                                    $output->writeln('<error>Unable to add website. Try again.</error>');
+                                if ($added == 0) {
+                                    $output->writeln('<error>Unable to add website. Website already Exist.</error>');
                                     $output->writeln('<comment>Exiting...</comment>');
                                     return;
                                 }
@@ -109,8 +109,8 @@ class ImportSiteMapCmd
                                 $pages = $this->importManager->getPagesByUrl($website["page"], $web);
                                 if (count($pages) < 1) {
                                     $pageAdded = $this->pageManager->create($web, $website["page"]);
-                                    if (!$pageAdded) {
-                                        $output->writeln('<error>Unable to add website. Try again.</error>');
+                                    if ($pageAdded == 0) {
+                                        $output->writeln('<error>Unable to add pages to website. Try Again</error>');
                                         $output->writeln('<comment>Exiting...</comment>');
                                         return;
                                     }
