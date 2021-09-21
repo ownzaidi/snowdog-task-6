@@ -106,14 +106,15 @@ class ImportSiteMapCmd
                         foreach ($websites as $website) {
                             if (isset($website["websitePage"]) && isset($website["website"])) {
                                 $web = $this->importManager->getWebsiteByUrl($website["website"]);
-                                $id = $web->getWebsiteId();
-                                $pages = $this->importManager->getPagesByUrl($website["websitePage"], $id);
-                                if (count($pages) < 1) {
-                                    $pageAdded = $this->pageManager->create($web, $website["websitePage"]);
-                                    if ($pageAdded == 0) {
-                                        $output->writeln('<error>Unable to add page "'.$website["websitePage"].'" to website. Try Again</error>');
-                                        $output->writeln('<comment>Continuing...</comment>');
-                                        continue;
+                                if (isset($web->website_id)) {
+                                    $pages = $this->importManager->getPagesByUrl($website["websitePage"], $web->website_id);
+                                    if (count($pages) < 1) {
+                                        $pageAdded = $this->pageManager->create($web, $website["websitePage"]);
+                                        if ($pageAdded == 0) {
+                                            $output->writeln('<error>Unable to add page "' . $website["websitePage"] . '" to website. Try Again</error>');
+                                            $output->writeln('<comment>Continuing...</comment>');
+                                            continue;
+                                        }
                                     }
                                 }
                             }

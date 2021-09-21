@@ -21,7 +21,7 @@
         <websitePage>http://www.fb.com/videos</websitePage>
     </data>
     <data>
-        <website>http://www.insta.com/</website>
+        <websiteUrl>http://www.insta.com/</websiteUrl>
         <websiteName>Insta</websiteName>
     </data>
     <data>
@@ -38,7 +38,7 @@
     </data>
     <data>
         <websiteUrl>http://www.twitter.com/</websiteUrl>
-        <name>Twitter</name>
+        <websiteName>Twitter</websiteName>
     </data>
     <data>
         <website>http://www.twitter.com/</website>
