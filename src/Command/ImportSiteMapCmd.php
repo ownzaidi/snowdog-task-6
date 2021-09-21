@@ -96,9 +96,9 @@ class ImportSiteMapCmd
                             if (isset($website["websiteUrl"]) && isset($website["websiteName"])) {
                                 $added = $this->websiteManager->create($user, $website["websiteName"], $website["websiteUrl"]);
                                 if ($added == 0) {
-                                    $output->writeln('<error>Unable to add website. Website already Exist.</error>');
-                                    $output->writeln('<comment>Exiting...</comment>');
-                                    return;
+                                    $output->writeln('<error>Unable to add website. Website "'. $website["websiteName"] .'"already Exist.</error>');
+                                    $output->writeln('<comment>Continuing...</comment>');
+                                    continue;
                                 }
                             }
                         }
@@ -106,13 +106,14 @@ class ImportSiteMapCmd
                         foreach ($websites as $website) {
                             if (isset($website["websitePage"]) && isset($website["website"])) {
                                 $web = $this->importManager->getWebsiteByUrl($website["website"]);
-                                $pages = $this->importManager->getPagesByUrl($website["websitePage"], $web);
+                                $id = $web->getWebsiteId();
+                                $pages = $this->importManager->getPagesByUrl($website["websitePage"], $id);
                                 if (count($pages) < 1) {
                                     $pageAdded = $this->pageManager->create($web, $website["websitePage"]);
                                     if ($pageAdded == 0) {
-                                        $output->writeln('<error>Unable to add pages to website. Try Again</error>');
-                                        $output->writeln('<comment>Exiting...</comment>');
-                                        return;
+                                        $output->writeln('<error>Unable to add page "'.$website["websitePage"].'" to website. Try Again</error>');
+                                        $output->writeln('<comment>Continuing...</comment>');
+                                        continue;
                                     }
                                 }
                             }

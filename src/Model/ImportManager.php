@@ -29,9 +29,8 @@ class ImportManager
         return $website;
     }
 
-    public function getPagesByUrl($url, $website)
+    public function getPagesByUrl($url, $websiteId)
     {
-        $websiteId = $website->getWebsiteId();
         /** @var \PDOStatement $query */
         $query = $this->database->prepare('SELECT * FROM pages WHERE website_id = :website AND url = :url');
         $query->bindParam(':website', $websiteId, \PDO::PARAM_INT);
