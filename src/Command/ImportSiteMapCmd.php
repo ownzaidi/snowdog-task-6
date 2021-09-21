@@ -90,7 +90,7 @@ class ImportSiteMapCmd
                         }
                         $data = simplexml_load_string($xmlfile);
                         $data = json_decode(json_encode($data), true);
-                        $data = end($data);
+                        $$websites = end($data);
 
                         foreach ($websites as $website) {
                             if (isset($website["website"]) && isset($website["name"])) {

@@ -3,6 +3,8 @@
 namespace Ownzaidi\Task6\Model;
 
 use Snowdog\DevTest\Core\Database;
+use Snowdog\DevTest\Model\Website;
+use Snowdog\DevTest\Model\Page;
 
 class ImportManager
 {
